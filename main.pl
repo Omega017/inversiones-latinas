@@ -9,6 +9,11 @@ mostrarMsg:-writeln('Se presiono el boton').
 % cada pregunta)
 
 
+%************
+%Prueba de coneccion de preguntas para bryancitogeocito
+solve(Texto1) :-
+  facilidad_de_hacer_negocios(X_PAIS,Texto1),
+  writeln(X_PAIS).
 
 
 
@@ -19,8 +24,8 @@ abrirP1():- new(P1, dialog('Pregunta 1')),
 	new(Etiqueta1, label(nombre,'Pregunta 1: Pais que brinda mas facilidades para invertir?')),
 	new(Texto1, text_item('Ingrese el criterio A')),
 	new(Texto2, text_item('Ingrese el criterio B')),
-	%new(Texto3, text_item('El pais con dichos criterios es')),
-	new(Boton0, button('Pais con mas facilidades', message(@prolog,mostrarMsg))),
+	new(Texto3, text_item('El pais con dichos criterios es')),
+	new(Boton0, button('Pais con mas facilidades', message(@prolog,solve,47))),
 	new(Boton1, button('Pais que satisface A y B', message(@prolog,mostrarMsg))),
 
 
@@ -31,6 +36,7 @@ abrirP1():- new(P1, dialog('Pregunta 1')),
 	send(P1, append, Boton0),
 	send(P1, append, Boton1),
 	send(P1,open).
+
 
 abrirP2():- new(P2, dialog('Pregunta 2')),
 	%Pregunta 2
