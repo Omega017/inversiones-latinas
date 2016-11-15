@@ -17,6 +17,8 @@ solve(Texto1) :-
 
 
 
+
+
 %Pregunta 1
 
 abrirP1():- new(P1, dialog('Pregunta 1')),
