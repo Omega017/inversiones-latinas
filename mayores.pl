@@ -101,11 +101,3 @@ hayMayores_res_ins(Pais):-
   resolucion_de_la_insolvencia(C, M), C\=Pais, M > N.
 
 %--------------------------------------------%
-
-%n-esimo Mayor
-res_ins_n(Pais,Count):-
-  resolucion_de_la_insolvencia(Pais, _),
-  not( hayMayores_res_ins(Pais)), !.
-hayMayores_res_ins_n(Pais,Count):-
-  resolucion_de_la_insolvencia(Pais, N),
-  resolucion_de_la_insolvencia(C, M), C\=Pais, M > N.
