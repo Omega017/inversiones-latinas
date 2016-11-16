@@ -4,10 +4,44 @@
 fn(X):-fac_neg(Pais),send(X,selection,Pais).
 
 cf(X):-prot_inv(Pais),send(X,selection,Pais).
+
 cf2(X):-obt_elect(Pais),send(X,selection,Pais).
+
 cf3(X):-com_trs(Pais),send(X,selection,Pais).
 cf4(X):-perm_const(Pais),send(X,selection,Pais).
 an(X):-apt_neg(Pais),send(X,selection,Pais).
+
+la4(X,Pais1,Pais2):-
+  proteccion_de_los_inversionistas_minoritarios(Pais1,Valor1),
+    proteccion_de_los_inversionistas_minoritarios(Pais2,Valor2),
+  (
+     Valor1 > Valor2 ->
+      send(X,selection,Pais1)
+
+  ;   send(X,selection,Pais2)
+  ).
+
+  la5(X,Pais1,Pais2):-
+    pago_de_impuestos(Pais1,Valor1),
+      pago_de_impuestos(Pais2,Valor2),
+    (
+       Valor1 > Valor2 ->
+        send(X,selection,Pais1)
+
+    ;   send(X,selection,Pais2)
+    ).
+
+    la6(X,Pais1,Pais2):-
+      comercio_transfronterizo(Pais1,Valor1),
+        comercio_transfronterizo(Pais2,Valor2),
+      (
+         Valor1 > Valor2 ->
+          send(X,selection,Pais1)
+
+      ;   send(X,selection,Pais2)
+      ).
+
+
 
 
 %el codigo para mostrar en consola el resultado es
@@ -88,40 +122,52 @@ abrirP3():- new(P3, dialog('Pregunta 3')),
 abrirP4():- new(P4, dialog('Pregunta 4')),
 	%Pregunta 4
 	new(Etiqueta4, label(nombre,'Pregunta 4: Cual de los dos paises brinda mas facilidades para invertir?')),
-  new(Texto1, text_item('El resultado es')),
+	new(Texto1, text_item('Ingrese Pais 1')),
+	new(Texto2, text_item('Ingrese Pais 2')),
+	new(Texto3, text_item('El resultado es')),
 
-	new(Boton0, button('Generar', message(@prolog,cf2,Texto1))),
+	new(Boton0, button('Generar', message(@prolog,la4,Texto3,Texto1?selection,Texto2?selection))),
 
 
 	send(P4, append, Etiqueta4),
-	send(P4, append, Boton0),
 	send(P4, append, Texto1),
+	send(P4, append, Texto2),
+	send(P4, append, Boton0),
+	send(P4, append, Texto3),
 	send(P4, open).
 
 abrirP5():- new(P5, dialog('Pregunta 5')),
 	%Pregunta 5
 	new(Etiqueta5, label(nombre,'Pregunta 5: Cual de los dos paises es mas seguro para invertir?')),
-  new(Texto1, text_item('El resultado es')),
+  new(Texto1, text_item('Ingrese Pais 1')),
+	new(Texto2, text_item('Ingrese Pais 2')),
+	new(Texto3, text_item('El resultado es')),
 
-	new(Boton0, button('Generar', message(@prolog,cf3,Texto1))),
+	new(Boton0, button('Generar', message(@prolog,la5,Texto3,Texto1?selection,Texto2?selection))),
 
 
 	send(P5, append, Etiqueta5),
-	send(P5, append, Boton0),
 	send(P5, append, Texto1),
+	send(P5, append, Texto2),
+	send(P5, append, Boton0),
+	send(P5, append, Texto3),
 	send(P5, open).
 
 abrirP6():- new(P6, dialog('Pregunta 6')),
 	%Pregunta 6
 	new(Etiqueta6, label(nombre,'Pregunta 6: Cual de los dos paises tiene mayor estabilidad para invertir?')),
-  new(Texto1, text_item('El resultado es')),
+  new(Texto1, text_item('Ingrese Pais 1')),
+	new(Texto2, text_item('Ingrese Pais 2')),
+	new(Texto3, text_item('El resultado es')),
 
-	new(Boton0, button('Generar', message(@prolog,cf4,Texto1))),
+	new(Boton0, button('Generar', message(@prolog,la6,Texto3,Texto1?selection,Texto2?selection))),
 
 
 	send(P6, append, Etiqueta6),
-	send(P6, append, Boton0),
 	send(P6, append, Texto1),
+	send(P6, append, Texto2),
+	send(P6, append, Boton0),
+	send(P6, append, Texto3),
 	send(P6, open).
 
 
