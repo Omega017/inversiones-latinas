@@ -1,8 +1,6 @@
 % Facts
 :- [facts].
 
-isOne(1).
-
 % Mayor facilidad de negocios
 fac_neg(Pais):-
   facilidad_de_hacer_negocios(Pais, _),
